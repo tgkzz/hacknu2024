@@ -1,0 +1,66 @@
+basePath: /
+definitions:
+  backend_internal_models.ErrResponse:
+    properties:
+      msg:
+        type: string
+    type: object
+host: localhost:9090
+info:
+  contact:
+    email: foreverwantlive@gmail.com
+    name: karl
+  description: My swagger doc.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: hackaton
+  version: "1.0"
+paths:
+  /helloworld:
+    get:
+      consumes:
+      - application/json
+      description: get string by ID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: hello world
+          schema:
+            type: string
+      summary: Show hello world message
+      tags:
+      - example
+  /v1/student/get-student-id-by-name:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves the user ID by the user's name from the database.
+      parameters:
+      - description: Name of the User
+        in: query
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ID of the User
+          schema:
+            type: string
+        "400":
+          description: 'Bad Request: Insufficient query arguments or no user found'
+          schema:
+            $ref: '#/definitions/backend_internal_models.ErrResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/backend_internal_models.ErrResponse'
+      summary: Get User ID by Name
+      tags:
+      - users
+schemes:
+- http
+swagger: "2.0"

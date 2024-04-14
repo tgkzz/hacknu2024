@@ -21,7 +21,7 @@ type MongoDB struct {
 
 func LoadConfig(path string) (Config, error) {
 	if err := godotenv.Load(path); err != nil {
-		return Config{}, err
+
 	}
 
 	cfg := Config{
